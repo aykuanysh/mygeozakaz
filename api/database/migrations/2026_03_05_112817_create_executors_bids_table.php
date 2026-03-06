@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('executors_bids', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('executor_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('price')->nullable();
+            $table->string('comment')->nullable();
+            $table->date('expected_finish_date');
+            $table->enum('status', ['pending', 'accepted', 'declined']);
             $table->timestamps();
         });
     }

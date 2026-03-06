@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('executors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->unique();
+            $table->text('description');
             $table->timestamps();
         });
     }
